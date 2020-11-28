@@ -1,0 +1,231 @@
+import pyttsx3
+import random
+import time
+
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+engine.setProperty('voice' , voices[0].id)
+
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+
+if __name__ == "__main__":
+    speak("welcome to this game manufactured by my sir aditya")
+    print("welcome to this game manufactured by my sir aditya")
+    speak("there are 3 games available. first is guess the number, second is stone paper scissors and third is my personal favourite cricket")
+    print("there are 2 games available. first is guess the number, second is stone paper scissors and third is my personal favourite cricket")
+    speak("which game you want to play!! type 1 for guess the number, type 2 for stone paper scissors or type 3 for cricket")
+    print("which game you want to play!! type 1 for guess the number, type 2 for stone paper scissors or type 3 for cricket")
+    ch = int(input())
+    if ch==1:
+        speak("you have selected the game, guess the number,Are you ready!!yes or no")
+        print("you have selected the game, guess the number,Are you ready!!\nyes or no")
+        answer = str(input())
+        if answer=="yes" or answer=="Yes":
+            speak("ok lets start it")
+            speak("game description are as follows!!")
+            print("ok lets start it")
+            print("game description are as follows!!")
+            speak("in this game you have to guess my number. you have only 10 attempts. i will keep giving you hints by saying that if your number is smaller or bigger than my number. be ready")
+            print("in this game you have to guess my number between 1 to 100 and you have only 10 attempts,i will keep giving you hints by saying that if your number is smaller or bigger than my number,be ready")
+            num1 = random.randint(1 , 100)
+            attempts = 0
+            while(True):
+                lst = ['enter your number' , 'enter your number' , 'ok enter your number' , 'enter your number again' , 'just close!!enter your number again' , "don't loose hope you are close enough, try again" , "you are little far, try again" , "you are giving guesses with mind,try again you will succeed!!"]
+                commentry = random.choice(lst)
+                speak(commentry)
+                print(commentry)
+                num2 = int(input())
+                if attempts<9:
+                    if num2==num1:
+                        attempts = attempts + 1
+                        speak("congrats!!, you win quickly , well done.")
+                        print("congrats!!, you win quickly , well done. you took" , attempts , "attempts to win")
+                        print("press enter to exit")
+                        input()
+                        exit()
+                        
+                    elif num2>num1 and num2<100:
+                        attempts = attempts + 1
+                        at = 10 - attempts
+                        speak('your number is larger than my number,make it small.')
+                        print('your number is larger than my number,make it small. your attempts left:' , at)
+                        continue
+                    elif num2<num1 and num2>0:
+                        attempts = attempts + 1
+                        at = 10 - attempts
+                        speak('your number is smaller than my number,make it larger.')
+                        print('your number is smaller than my number,make it larger. your attempts left:' , at)
+                        continue
+                    else:
+                        speak("you have not selected the number in range , i don't like cheaters. bye bye")
+                        print("press enter to exit")
+                        input()
+                        exit()
+                    
+
+                else:
+                    speak("sorry brother you had run out of attempts")
+                    print("press enter to exit")
+                    input()
+                    exit()
+		    
+        else:
+            print("ok as you wish")
+            speak("ok as you wish")
+            exit()
+    elif ch==2:
+        speak("you have seleted stone paper sissors game,get ready to play. game description are as follows: you have to choose s for stone, p for paper and sc for scissors")
+        print("you have seleted stone paper sissors game,get ready to play. game description are as follows: you have to choose s for stone, p for paper and sc for scissors")
+        speak("how many points match, you want")
+        print("how many points match, you want")
+        points = int(input())
+        points2 = 0
+        points3 = 0
+        while(True):
+            speak("ok!! enter your choice")
+            print("enter your choice")
+            sps = ["s" , "p" , "sc"]
+            mak = random.choice(sps)
+            he = str(input())
+            if he=="s":
+                speak("you have selected stone")
+                if mak=="p":
+                    points3 = points3 + 1
+                    speak("i have selected paper and also, i grap your stone and points in my paper")
+                    print("i have selected paper and also, i grap your stone and points in my paper\nyour points:" , points2,"computer points:", points3)
+                    if points3<points:
+                        continue
+                    else:
+                        speak("yeah, hurray, i won the match")
+                        print("yeaah hurrah, i won the match\nyour points:" , points2,"computer points:", points3)
+                        print("press enter to exit")
+                        input()
+                        exit()
+                elif mak=="s":
+                    speak("he he . i also selected stone")
+                    print("he he . i also selected stone\nyour points:" , points2,"computer points:", points3)
+                    continue
+                elif mak=="sc":
+                    points2 = points2 + 1
+                    speak("oh no!!, i lost 1 point, shit man, you broke my scessor")
+                    print("oh no!!, i lost 1 point, shit man, you broke my scissor\nyour points:" , points2,"computer points:", points3)
+                    if points2<points:
+                        continue
+                    else:
+                        speak("i am saying with full of disrespect , that you won the match...")
+                        print("i am saying with full of disrespect , that you won the match...\nyour points:" , points2,"computer points:", points3)
+                        print("press enter to exit")
+                        input()
+                        exit()
+			
+            elif he=="p":
+                if mak=="sc":
+                    points3 = points3 + 1
+                    speak("yeah , i have cut your paper with my scesor")
+                    print("yeah , i have cut your paper with my scisor\nyour points:" , points2,"computer points:", points3)
+                    if points3<points:
+                        continue
+                    else:
+                        speak("yeah, hurray, i won the match")
+                        print("yeaah hurrah, i won the match")
+                        print("press enter to exit")
+                        input()
+                        exit()
+			
+                elif mak=="p":
+                    speak("he he . i selected the same")
+                    print("he he . i selected the same\nyour points:" , points2,"computer points:", points3)
+                    continue
+                elif mak=="s":
+                    points2 = points2 + 1
+                    speak("oh no!!,i have selected stone and also, you grap my stone and points in your paper")
+                    print("oh no!!,i have selected stone and also, you grap my stone and points in your paper\nyour points:" , points2,"computer points:", points3)
+                    if points2<points:
+                        continue
+                    else:
+                        speak("i am saying with full of disrespect , that you won the match...")
+                        print("i am saying with full of disrespect , that you won the match...\nyour points:" , points2,"computer points:", points3)
+                        print("press enter to exit")
+                        input()
+                        exit()
+			
+            elif he=="sc":
+                if mak=="s":
+                    points3 = points3 + 1
+                    speak("yeah , i have broken your scesorrs with my stone")
+                    print("yeah , i have broken your scissors with my stone\nyour points:" , points2,"computer points:", points3)
+                    if points3<points:
+                        continue
+                    else:
+                        speak("yeah, hurray, i won the match")
+                        print("yeaah hurrah, i won the match\nyour points:" , points2,"computer points:", points3)
+                        exit()
+                elif mak=="sc":
+                    speak("he he . i selected the same")
+                    print("he he . i selected the same\nyour points:" , points2,"computer points:", points3)
+                    continue
+                elif mak=="p":
+                    points2 = points2 + 1
+                    speak("oh no!! you have cut my paper with your scessors")
+                    print("oh no!! you have cut my paper with your scissors\nyour points:" , points2,"computer points:", points3)
+                    if points2<points:
+                        continue
+                    else:
+                        speak("i am saying with full of disrespect , that you won the match...")
+                        print("i am saying with full of disrespect , that you won the match...\nyour points:" , points2,"computer points:", points3)
+                        print("press enter to exit")
+                        input()
+                        exit()
+		
+            else:
+                print("invalid selection")
+                print("press enter to exit")
+                input()
+                exit()
+    elif ch==3:
+        speak("you have selected cricket game . let's play . my side is australia yours is india")
+        print("you have selected cricket game,let's play,my side is australia yours is india")
+        print("indian playing 11                    australian playing 11\nrohit sharma                         david warner\nshikhar dhawan                       aaron finch\nvirat kohli(c)                       steve smith(c)\nkl rahul(wc)                         glenn maxwell\nrishab pant                          ashton turner(wc)\nhardik pandaya                       ashton agar\nbhuvneshwar kumar                    coulter nile\nmohd shami                           kane richardson\nkuldeep yadav                        mitchell starc\nyujwendra chahal                     pat cummins\njasprit bumrah                       adam zampa")
+        speak("how many overs match do you want. select betwen 1 to 20")
+        print("how many overs match do you want. select betwen 1 to 20")
+        overs = int(input())
+        speak("ok let's have toss!! . heads or tails . type 1 for heads and type 2 for tails")
+        print("ok let's have toss!! . heads or tails . type 1 for heads and type 2 for tails")
+        toss = int(input())
+        Toss = ["heads" , "tails"]
+        TOSS = random.choice(Toss)
+        if toss==1:
+            if TOSS=="heads":
+                speak("congratulations!!! . you won the toss . what will you choose, bat or ball, select 1 for batting and 2 for batting")
+                speak("my owner aditya singh is very lazy, sorry for that, request him to make this game complete")
+                print("press enter to exit")
+                input()
+            else:
+                speak("my owner aditya singh is very lazy, sorry for that, request him to make this game complete")
+                print("press enter to exit")
+                input()
+        else:
+            speak("my owner aditya singh is very lazy, sorry for that, request him to make this game complete")
+            print("press enter to exit")
+            input() 
+        
+            
+        
+    else:
+        speak("you have selected wrong option!!!")
+        print("you have selected wrong option!!")
+        print("press enter to exit")
+        input()
+        exit()
+                    
+                    
+
+
+                    
+                
+
+
+            
